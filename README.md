@@ -2,9 +2,9 @@
 
 This repository contains two Python scripts:
 
-- [zettel_link_rewriter.py](#zettel_link_rewriter.py) which can take a folder of Markdown files (or any other compatible format) and 
+- [zettel_link_rewriter.py](#zettel_link_rewriterpy) which can take a folder of Markdown files (or any other compatible format) and 
 convert any links that are in `[[wikilink]]` format into a link format that can be used with [Hugo](https://gohugo.io/).
-- [zettel_hugo_postmaker.py](#zettel_hugo_postmaker.py) which can take a folder of Markdown files (files with a `.md` extension only) and:
+- [zettel_hugo_postmaker.py](#zettel_hugo_postmakerpy) which can take a folder of Markdown files (files with a `.md` extension only) and:
   - Using `pandoc`, convert any citation links in pandoc compatible format into nicely formatted Citation links 
   - Convert any links that are in `[[wikilink]]` format into a link format that can be used with [Hugo](https://gohugo.io/).
 
