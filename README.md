@@ -1,4 +1,4 @@
-#pecify path to Citation Language Style file that should be used by pandoc when formatting citations# Rewrite Wikilinks in Zettelkasten as Hugo Links
+# Rewrite Wikilinks in Zettelkasten as Hugo Links
 
 This repository contains two Python scripts:
 
