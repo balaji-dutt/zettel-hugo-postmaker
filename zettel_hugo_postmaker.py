@@ -348,7 +348,8 @@ def run_pandoc(file, process_images, img_input_dir, img_output_dir, filters, bib
 
     metadata_file = None
     if metafile is not None:
-        metadata_file = '--metadata-file="' + str(metafile) + '"'
+        metafile_str = metafile.replace('\\', '\\\\')
+        metadata_file = '--metadata-file="' + metafile_str + '"'
     else:
         logging.debug('Skipping additional metadata file parameter since no input file has been specified.')
 
@@ -359,12 +360,18 @@ def run_pandoc(file, process_images, img_input_dir, img_output_dir, filters, bib
     elif process_images == 'no':
         logging.debug('Skipping image output directories parameter since images processing is set to no.')
 
-    bibliography = '--bibliography="' + bibfile + '"'
-    csl = '--csl="' + cslfile + '"'
-    inputfile = '"' + str(file) + '"'
+    bibfile_str = bibfile.replace('\\', '\\\\')
+    cslfile_str = cslfile.replace('\\', '\\\\')
+    inputfile_str = str(file)
+    inputfile_str = inputfile_str.replace('\\', '\\\\')
+    bibliography = '--bibliography="' + bibfile_str + '"'
+    csl = '--csl="' + cslfile_str + '"'
+    inputfile = '"' + inputfile_str + '"'
     # os.remove('outfile.md')
     # pathlib.Path.unlink(pathlib.Path.joinpath(temp_dir, 'outfile.md'))
-    outfile = '-o ' + '"' + str(temp_dir) + "\\" + 'outfile.md"'
+    tempdir_str = str(temp_dir)
+    tempdir_str = tempdir_str.replace('\\', '\\\\')
+    outfile = '-o ' + '"' + tempdir_str + "\\" + 'outfile.md"'
 
     # This is not a recommended practice, but pandoc needs to be running in the eventual output folder for image
     # extraction to work reliably.
