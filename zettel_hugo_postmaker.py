@@ -383,7 +383,7 @@ def run_pandoc(file, process_images, img_input_dir, img_output_dir, filters, bib
     if process_images == 'yes' and metadata_file is not None and filterlist is not None:
         with Sultan.load(logging=False) as s:
             result = s.pandoc(inputfile, '-f markdown', '--standalone', img_inputdir, img_output_path, filterlist,
-                              '--wrap=preserve', '--atx-headers', '--filter pandoc-citeproc', metadata_file,
+                              '--wrap=preserve', '--markdown-headings=atx', '--citeproc', metadata_file,
                               '--metadata=suppress-bibliography', '-t markdown_mmd+yaml_metadata_block', bibliography,
                               csl, outfile).run()
             logging.debug('Pandoc command execution Status: {} and '.format(result.rc) +
@@ -392,7 +392,7 @@ def run_pandoc(file, process_images, img_input_dir, img_output_dir, filters, bib
     if process_images == 'yes' and metadata_file is not None and filterlist is None:
         with Sultan.load(logging=False) as s:
             result = s.pandoc(inputfile, '-f markdown', '--standalone', img_inputdir, img_output_path,
-                              '--wrap=preserve', '--atx-headers', '--filter pandoc-citeproc', metadata_file,
+                              '--wrap=preserve', '--markdown-headings=atx', '--citeproc', metadata_file,
                               '--metadata=suppress-bibliography', '-t markdown_mmd+yaml_metadata_block', bibliography,
                               csl, outfile).run()
             logging.debug('Pandoc command execution Status: {} and '.format(result.rc) +
@@ -401,7 +401,7 @@ def run_pandoc(file, process_images, img_input_dir, img_output_dir, filters, bib
     if process_images == 'yes' and metadata_file is None and filterlist is not None:
         with Sultan.load(logging=False) as s:
             result = s.pandoc(inputfile, '-f markdown', '--standalone', img_inputdir, img_output_path, filterlist,
-                              '--wrap=preserve', '--atx-headers', '--filter pandoc-citeproc',
+                              '--wrap=preserve', '--markdown-headings=atx', '--citeproc',
                               '--metadata=suppress-bibliography', '-t markdown_mmd+yaml_metadata_block', bibliography,
                               csl, outfile).run()
             logging.debug('Pandoc command execution Status: {} and '.format(result.rc) +
@@ -410,7 +410,7 @@ def run_pandoc(file, process_images, img_input_dir, img_output_dir, filters, bib
     if process_images == 'yes' and metadata_file is None and filterlist is None:
         with Sultan.load(logging=False) as s:
             result = s.pandoc(inputfile, '-f markdown', '--standalone', img_inputdir, img_output_path,
-                              '--wrap=preserve', '--atx-headers', '--filter pandoc-citeproc',
+                              '--wrap=preserve', '--markdown-headings=atx', '--citeproc',
                               '--metadata=suppress-bibliography', '-t markdown_mmd+yaml_metadata_block', bibliography,
                               csl, outfile).run()
             logging.debug('Pandoc command execution Status: {} and '.format(result.rc) +
@@ -419,7 +419,7 @@ def run_pandoc(file, process_images, img_input_dir, img_output_dir, filters, bib
     if process_images == 'no' and metadata_file is not None and filterlist is not None:
         with Sultan.load(logging=False) as s:
             result = s.pandoc(inputfile, '-f markdown', '--standalone', filterlist,
-                              '--wrap=preserve', '--atx-headers', '--filter pandoc-citeproc', metadata_file,
+                              '--wrap=preserve', '--markdown-headings=atx', '--citeproc', metadata_file,
                               '--metadata=suppress-bibliography', '-t markdown_mmd+yaml_metadata_block', bibliography,
                               csl, outfile).run()
             logging.debug('Pandoc command execution Status: {} and '.format(result.rc) +
@@ -428,7 +428,7 @@ def run_pandoc(file, process_images, img_input_dir, img_output_dir, filters, bib
     if process_images == 'no' and metadata_file is not None and filterlist is None:
         with Sultan.load(logging=False) as s:
             result = s.pandoc(inputfile, '-f markdown', '--standalone',
-                              '--wrap=preserve', '--atx-headers', '--filter pandoc-citeproc', metadata_file,
+                              '--wrap=preserve', '--markdown-headings=atx', '--citeproc', metadata_file,
                               '--metadata=suppress-bibliography', '-t markdown_mmd+yaml_metadata_block', bibliography,
                               csl, outfile).run()
             logging.debug('Pandoc command execution Status: {} and '.format(result.rc) +
@@ -437,7 +437,7 @@ def run_pandoc(file, process_images, img_input_dir, img_output_dir, filters, bib
     if process_images == 'no' and metadata_file is None and filterlist is not None:
         with Sultan.load(logging=False) as s:
             result = s.pandoc(inputfile, '-f markdown', '--standalone', filterlist,
-                              '--wrap=preserve', '--atx-headers', '--filter pandoc-citeproc',
+                              '--wrap=preserve', '--markdown-headings=atx', '--citeproc',
                               '--metadata=suppress-bibliography', '-t markdown_mmd+yaml_metadata_block', bibliography,
                               csl, outfile).run()
             logging.debug('Pandoc command execution Status: {} and '.format(result.rc) +
@@ -446,7 +446,7 @@ def run_pandoc(file, process_images, img_input_dir, img_output_dir, filters, bib
     if process_images == 'no' and metadata_file is None and filterlist is None:
         with Sultan.load(logging=False) as s:
             result = s.pandoc(inputfile, '-f markdown', '--standalone',
-                              '--wrap=preserve', '--atx-headers', '--filter pandoc-citeproc',
+                              '--wrap=preserve', '--markdown-headings=atx', '--citeproc',
                               '--metadata=suppress-bibliography', '-t markdown_mmd+yaml_metadata_block', bibliography,
                               csl, outfile).run()
             logging.debug('Pandoc command execution Status: {} and '.format(result.rc) +
