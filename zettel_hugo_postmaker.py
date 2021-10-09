@@ -157,7 +157,7 @@ def parse_config():
                          'incorrectly defined.')
 
     return config_file, source_files, target_files, process_images, img_inputs, img_output, filters, citations, \
-        bib_file, csl_file, metafile, log_file, process_type, modified_time
+           bib_file, csl_file, metafile, log_file, process_type, modified_time
 
 
 def output_dir(target):
@@ -483,49 +483,49 @@ def modify_links(file_obj):
             # Read the entire file as a single string
             firstpass = regex.sub(r'(?V1)'
                                   r'(?s)```.*?```(*SKIP)(*FAIL)(?-s)|(?s)`.*?`(*SKIP)(*FAIL)(?-s)'
-             #                    Ignore fenced & inline code blocks. V1 engine allows in-line flags so
-             #                    we enable newline matching only here.
-             #                    r'|(\ {4}|\t).*(*SKIP)(*FAIL)'
-             #                    We cannot support skipping code blocks beginning with 4 spaces/1 tab as pandoc  
-             #                    conversion changes Note-Link-Janitor links to use 4 spaces.   
+                                  # Ignore fenced & inline code blocks. V1 engine allows in-line flags so we 
+                                  # enable newline matching only here. 
+                                  # r'|(\ {4}|\t).*(*SKIP)(*FAIL)      
+                                  # We cannot support skipping code blocks beginning with 4 spaces/1 tab 
+                                  # as pandoc conversion changes Note-Link-Janitor links to use 4 spaces. 
                                   r'|(\\\[\\\[(.*)\\\]\\\](?!\s\(|\())', r'[\2]({{< relref "\2.md" >}})', content)
             # Finds  references that are in style \[\[foo\]\] only by excluding links in style \[\[foo\]\](bar) or
             # \[\[foo\]\] (bar). Capture group $2 returns just foo
             secondpass = regex.sub(r'(?V1)'
                                    r'(?s)```.*?```(*SKIP)(*FAIL)(?-s)|(?s)`.*?`(*SKIP)(*FAIL)(?-s)'
-            #                    Ignore fenced & inline code blocks. V1 engine allows in-line flags so
-            #                    we enable newline matching only here.
-            #                    r'|(\ {4}|\t).*(*SKIP)(*FAIL)'
-            #                    We cannot support skipping code blocks beginning with 4 spaces/1 tab as pandoc  
-            #                    conversion changes Note-Link-Janitor links to use 4 spaces.   
+                                   # Ignore fenced & inline code blocks. V1 engine allows in-line flags so we enable 
+                                   # newline matching only here. 
+                                   # r'|(\ {4}|\t).*(*SKIP)(*FAIL) 
+                                   # We cannot support skipping code blocks beginning with 4 spaces/1 tab as pandoc 
+                                   # conversion changes Note-Link-Janitor links to use 4 spaces. 
                                    r'|(\[\\\[(\d+)\\\]\])', r'[\2]', firstpass)
             # Finds references that are in style [\[123\]] only. Capture Group $2 returns just 123.
             thirdpass = regex.sub(r'(?V1)'
                                   r'(?s)```.*?```(*SKIP)(*FAIL)(?-s)|(?s)`.*?`(*SKIP)(*FAIL)(?-s)'
-            #                    Ignore fenced & inline code blocks. V1 engine allows in-line flags so
-            #                    we enable newline matching only here.
-            #                    r'|(\ {4}|\t).*(*SKIP)(*FAIL)'
-            #                    We cannot support skipping code blocks beginning with 4 spaces/1 tab as pandoc  
-            #                    conversion changes Note-Link-Janitor links to use 4 spaces.   
+                                  # Ignore fenced & inline code blocks. V1 engine allows in-line flags so
+                                  # we enable newline matching only here. 
+                                  # r'|(\ {4}|\t).*(*SKIP)(*FAIL)'
+                                  # We cannot support skipping code blocks beginning with 4 spaces/1 tab as pandoc  
+                                  # conversion changes Note-Link-Janitor links to use 4 spaces.   
                                   r'|(\%20+(?=[^(\)]*\)))', r' ', secondpass)
             # Finds references that are in style (foo%20bar) only and changes it to (foo bar).
             fourthpass = regex.sub(r'(?V1)'
                                    r'(?s)```.*?```(*SKIP)(*FAIL)(?-s)|(?s)`.*?`(*SKIP)(*FAIL)(?-s)'
-            #                    Ignore fenced & inline code blocks. V1 engine allows in-line flags so
-            #                    we enable newline matching only here.
-            #                    r'|(\ {4}|\t).*(*SKIP)(*FAIL)'
-            #                    We cannot support skipping code blocks beginning with 4 spaces/1 tab as pandoc  
-            #                    conversion changes Note-Link-Janitor links to use 4 spaces.   
+                                   # Ignore fenced & inline code blocks. V1 engine allows in-line flags so
+                                   # we enable newline matching only here.
+                                   # r'|(\ {4}|\t).*(*SKIP)(*FAIL)'
+                                   # We cannot support skipping code blocks beginning with 4 spaces/1 tab as pandoc  
+                                   # conversion changes Note-Link-Janitor links to use 4 spaces.   
                                    r'|(\[(\d+)\](\()(.*)(?=\))\))', r'[\2 \4]({{< relref "\2 \4.md" >}})', thirdpass)
             # Finds only references in style [123](bar). Capture group $2 returns 123 and capture
             # group $4 returns bar
             finalpass = regex.sub(r'(?V1)'
                                   r'(?s)```.*?```(*SKIP)(*FAIL)(?-s)|(?s)`.*?`(*SKIP)(*FAIL)(?-s)'
-            #                    Ignore fenced & inline code blocks. V1 engine allows in-line flags so
-            #                    we enable newline matching only here.
-            #                    r'|(\ {4}|\t).*(*SKIP)(*FAIL)'
-            #                    We cannot support skipping code blocks beginning with 4 spaces/1 tab as pandoc  
-            #                    conversion changes Note-Link-Janitor links to use 4 spaces.   
+                                  # Ignore fenced & inline code blocks. V1 engine allows in-line flags so
+                                  # we enable newline matching only here.
+                                  # r'|(\ {4}|\t).*(*SKIP)(*FAIL)'
+                                  # We cannot support skipping code blocks beginning with 4 spaces/1 tab as pandoc  
+                                  # conversion changes Note-Link-Janitor links to use 4 spaces.   
                                   r'|(\\\[\\\[(\d+)\\\]\\\](\s\(|\()(.*)\))', r'[\2 \4]({{< relref "\2 \4.md" >}})',
                                   fourthpass)
             # Finds only references in style \[\[123\]\] (bar). Capture group $2 returns 123 and capture
